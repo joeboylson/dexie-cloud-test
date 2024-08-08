@@ -1,6 +1,5 @@
-import "./index.css";
-import { useCallback } from "react";
 import MinimalButton from "../../components/MinimalButton";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
