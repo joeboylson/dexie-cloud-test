@@ -1,17 +1,22 @@
 import "./index.css";
-import { Card, CardContent } from "@mui/material";
+import { useCallback } from "react";
+import MinimalButton from "../../components/MinimalButton";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const handleLogin = useCallback(() => {
+    /**
+     * TODO: do login here
+     */
+    navigate("/");
+  }, []);
+
   return (
-    <div id="pages-login">
-      <Card>
-        <CardContent>
-          {/**
-           * TODO: add login page
-           */}
-          <p>Login Page</p>
-        </CardContent>
-      </Card>
-    </div>
+    <>
+      <p>Login Page</p>
+      <MinimalButton onClick={handleLogin}>Go to Homepage</MinimalButton>
+    </>
   );
 }

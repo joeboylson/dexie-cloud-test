@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "../pages/Login";
-import AuthenticatedWrapper from "../components/AuthenticatedWrapper";
 import { Routes } from "../enums/routes";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     /**
      * TODO: add Home Page
      */
-    element: <p>Root</p>,
+    element: <Home />,
   },
 ]);
 
