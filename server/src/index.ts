@@ -10,4 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authenticationRouter);
 setStaticFolder(app);
 
-app.listen(SERVER_PORT, () => console.info(`>>> ${SERVER_PORT}`));
+app.listen(SERVER_PORT, () => {
+  console.log(process.env);
+  console.info(`>>> ${SERVER_PORT}`);
+});
