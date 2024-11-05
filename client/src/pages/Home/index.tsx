@@ -22,7 +22,6 @@ export default function Home() {
     db.members.add({
       realmId,
       email,
-      invite: true,
       permissions: {
         add: "*",
         manage: "*",
