@@ -11,6 +11,5 @@ app.use("/api/auth", authenticationRouter);
 setStaticFolder(app);
 
 app.listen(SERVER_PORT, () => {
-  console.log(process.env);
   console.info(`>>> ${SERVER_PORT}`);
 });

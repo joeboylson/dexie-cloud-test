@@ -2,7 +2,7 @@
   overscroll-behavior: none;
 }
 
-html, body, #root {
+html, body, #root, p {
   margin: 0;
   padding: 0;
 }

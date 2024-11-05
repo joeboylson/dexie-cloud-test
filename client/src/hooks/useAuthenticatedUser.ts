@@ -1,21 +1,20 @@
-import axios from "axios";
-import { IsAuthenticated } from "@shared/types";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { db } from "../utils";
+import { UserLogin } from "dexie-cloud-addon";
 
 export function useAuthenticatedUser() {
   const navigate = useNavigate();
 
-  const [authenticatedUser, setAuthenticatedUser] = useState<IsAuthenticated>();
+  const [authenticatedUser, setAuthenticatedUser] = useState<UserLogin>();
 
   const getIsAuthenticated = useCallback(async () => {
     if (authenticatedUser) return;
 
     try {
-      const response = await axios.get(`/api/auth/is-authenticated`);
-      const _authenticatedUser = response.data as unknown as IsAuthenticated;
-      if (!_authenticatedUser?.authenticated) throw new Error("Invalid user");
-      setAuthenticatedUser(_authenticatedUser);
+      const currentUser = db.cloud.currentUser.getValue();
+      if (!currentUser.accessToken) throw new Error("Invalid user");
+      setAuthenticatedUser(currentUser);
     } catch (error) {
       console.error(error);
       navigate("/login");

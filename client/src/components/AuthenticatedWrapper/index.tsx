@@ -3,9 +3,10 @@ import { WithChildren } from "../../types";
 import { createContext } from "react";
 import { useAuthenticatedUser } from "../../hooks/useAuthenticatedUser";
 import { IsAuthenticated } from "@shared/types";
+import { UserLogin } from "dexie-cloud-addon";
 
 interface UserContextType {
-  authenticatedUser?: IsAuthenticated;
+  authenticatedUser?: UserLogin;
 }
 
 export const UserContext = createContext<UserContextType>({

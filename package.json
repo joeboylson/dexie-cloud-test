@@ -26,6 +26,7 @@
     "env-cmd": "^10.1.0"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.5"
+    "@types/lodash": "^4.17.5",
+    "dexie-export-import": "^4.1.2"
   }
 }
