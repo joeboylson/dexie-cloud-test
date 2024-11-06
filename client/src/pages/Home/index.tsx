@@ -20,15 +20,8 @@ export default function Home() {
     if (isEmpty(realmId) || isEmpty(email)) return alert("nope");
 
     db.members.add({
-      owner: email,
       realmId,
       email,
-      permissions: {
-        add: "*",
-        manage: "*",
-        update: "*",
-      },
-      roles: [],
     });
   };
 
@@ -39,7 +32,7 @@ export default function Home() {
 
   return (
     <AuthenticatedWrapper>
-      <h1>V4</h1>
+      <h1>V5</h1>
       <div>
         <button onClick={makeANewRealm}>MAKE A NEW REALM</button>
 
