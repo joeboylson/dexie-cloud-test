@@ -1,4 +1,4 @@
-import { useLiveQuery } from "dexie-react-hooks";
+import { useLiveQuery, useObservable } from "dexie-react-hooks";
 import AuthenticatedWrapper from "../../components/AuthenticatedWrapper";
 import { db } from "../../utils";
 import { useState } from "react";
@@ -35,13 +35,16 @@ export default function Home() {
   const realms = useLiveQuery(() => db.realms.toArray());
   const members = useLiveQuery(() => db.members.toArray());
 
+  const invites = useObservable(db.cloud.invites);
+
   return (
     <AuthenticatedWrapper>
+      <h1>V4</h1>
       <div>
         <button onClick={makeANewRealm}>MAKE A NEW REALM</button>
-        <br />
-        <br />
-        <br />
+
+        <hr />
+
         <input
           placeholder="RealmId"
           type="text"
@@ -53,9 +56,9 @@ export default function Home() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <button onClick={addMemberToRealm}>Add User to Realm</button>
-        <br />
-        <br />
-        <br />
+
+        <hr />
+        <h3>REALMS</h3>
         {realms?.map((r) => (
           <div>
             <p>name: {r.name}</p>
@@ -66,9 +69,10 @@ export default function Home() {
             <br />
           </div>
         ))}
-        <br />
-        <br />
-        <br />
+
+        <hr />
+        <h3>MEMBERS</h3>
+
         {members?.map((m) => (
           <div>
             <p>name: {m.name}</p>
@@ -77,6 +81,19 @@ export default function Home() {
             <p>email: {m.email}</p>
             <p>Accepted?: {m.accepted ? "YES" : "NO"}</p>
             <button onClick={() => db.members.delete(m.realmId)}>Delete</button>
+            <br />
+            <br />
+          </div>
+        ))}
+
+        <hr />
+        <h3>INVITES</h3>
+
+        {invites?.map((i) => (
+          <div>
+            <p>{JSON.stringify(i)}</p>
+            <p>Invited By: {i.invitedBy?.email}</p>
+            <button onClick={() => i.accept()}>ACCEPT</button>
             <br />
             <br />
           </div>
