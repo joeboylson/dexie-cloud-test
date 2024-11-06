@@ -20,6 +20,7 @@ export default function Home() {
     if (isEmpty(realmId) || isEmpty(email)) return alert("nope");
 
     db.members.add({
+      owner: email,
       realmId,
       email,
       permissions: {
