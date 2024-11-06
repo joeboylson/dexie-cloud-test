@@ -12,7 +12,6 @@ export default function Home() {
     const email = db.cloud.currentUser.getValue().email;
     db.realms.add({
       name: `${email}'s Realm`,
-      represents: "Another realm",
     });
   };
 
@@ -85,7 +84,7 @@ export default function Home() {
         {invites?.map((i) => (
           <div>
             <p>{JSON.stringify(i)}</p>
-            <p>Invited By: {i.invitedBy?.email}</p>
+            <p>Invited By: {i.invitedDate?.toLocaleTimeString()}</p>
             <button onClick={() => i.accept()}>ACCEPT</button>
             <br />
             <br />
